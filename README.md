@@ -1,9 +1,10 @@
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iplicit Fun Quiz</title>
+    <title>iplicitgame</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +14,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0057B8 0%, #FFA500 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -40,13 +41,13 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, #0057B8 0%, #FFA500 100%);
         }
 
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: #e5e7eb;
+            background: #f2f2f2;
             border-radius: 10px;
             margin-bottom: 30px;
             overflow: hidden;
@@ -54,13 +55,13 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, #0057B8 0%, #FFA500 100%);
             transition: width 0.3s ease;
             border-radius: 10px;
         }
 
         .question-counter {
-            color: #6b7280;
+            color: #555;
             font-size: 14px;
             margin-bottom: 20px;
         }
@@ -91,21 +92,23 @@
         }
 
         .option:hover {
-            background: #f9fafb;
-            border-color: #667eea;
+            background: #FAF4D3; /* light yellow for hover, high contrast */
+            border-color: #FFA500;
             transform: translateY(-2px);
         }
 
         .option.correct {
-            background: #dcfce7;
-            border-color: #16a34a;
-            color: #15803d;
+            background: #E3F9E5; /* light green, but not too close to red/green problem */
+            border-color: #218739;
+            color: #218739;
+            font-weight: bold;
         }
 
         .option.incorrect {
-            background: #fef2f2;
-            border-color: #dc2626;
-            color: #dc2626;
+            background: #FFF1E6; /* light orange */
+            border-color: #FF6D00;
+            color: #FF6D00;
+            font-weight: bold;
         }
 
         .option.disabled {
@@ -118,8 +121,8 @@
         }
 
         .explanation {
-            background: #f0f9ff;
-            border-left: 4px solid #0ea5e9;
+            background: #E6F0FA;
+            border-left: 4px solid #0057B8;
             padding: 20px;
             margin: 20px 0;
             border-radius: 0 10px 10px 0;
@@ -146,7 +149,7 @@
 
         .score-subtitle {
             font-size: 18px;
-            color: #6b7280;
+            color: #555;
             margin-bottom: 40px;
         }
 
@@ -169,23 +172,23 @@
         }
 
         .cta-button.primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0057B8 0%, #FFA500 100%);
             color: white;
         }
 
         .cta-button.primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 87, 184, 0.2);
         }
 
         .cta-button.secondary {
             background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
+            color: #0057B8;
+            border: 2px solid #0057B8;
         }
 
         .cta-button.secondary:hover {
-            background: #667eea;
+            background: #0057B8;
             color: white;
             transform: translateY(-2px);
         }
@@ -198,11 +201,12 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            color: #6b7280;
+            color: #0057B8;
         }
 
         .restart-button:hover {
-            background: #e5e7eb;
+            background: #FFA500;
+            color: #fff;
         }
 
         @keyframes fadeIn {
@@ -213,11 +217,9 @@
             .quiz-container {
                 padding: 30px 20px;
             }
-
             .question {
                 font-size: 20px;
             }
-
             .option {
                 padding: 15px;
             }
@@ -238,6 +240,7 @@
     </div>
 
     <script>
+        // Quiz data
         const quizData = [
             {
                 question: "What makes iplicit different from legacy on-premise finance systems?",
@@ -315,7 +318,6 @@
 
             questionCounter.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
             questionElement.textContent = quizData[currentQuestion].question;
-
             optionsElement.innerHTML = '';
             explanationContainer.innerHTML = '';
 
