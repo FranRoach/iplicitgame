@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iplicit Fun Quiz</title>
+    <title>iplicitgame</title>
     <style>
         * {
             margin: 0;
@@ -213,11 +213,9 @@
             .quiz-container {
                 padding: 30px 20px;
             }
-
             .question {
                 font-size: 20px;
             }
-
             .option {
                 padding: 15px;
             }
@@ -238,6 +236,7 @@
     </div>
 
     <script>
+        // Quiz data
         const quizData = [
             {
                 question: "What makes iplicit different from legacy on-premise finance systems?",
@@ -315,7 +314,6 @@
 
             questionCounter.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
             questionElement.textContent = quizData[currentQuestion].question;
-
             optionsElement.innerHTML = '';
             explanationContainer.innerHTML = '';
 
