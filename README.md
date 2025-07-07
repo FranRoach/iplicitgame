@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Systems Knowledge Quiz</title>
+    <title>Iplicit Finance Quiz</title>
     <style>
         * {
             margin: 0;
@@ -213,11 +213,11 @@
             .quiz-container {
                 padding: 30px 20px;
             }
-            
+
             .question {
                 font-size: 20px;
             }
-            
+
             .option {
                 padding: 15px;
             }
@@ -315,10 +315,10 @@
 
             questionCounter.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
             questionElement.textContent = quizData[currentQuestion].question;
-            
+
             optionsElement.innerHTML = '';
             explanationContainer.innerHTML = '';
-            
+
             quizData[currentQuestion].options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'option';
@@ -344,7 +344,7 @@
                 option.classList.add('disabled');
                 if (i === correctIndex) {
                     option.classList.add('correct');
-                } else if (i === selectedAnswer) {
+                } else if (i === selectedAnswer && selectedAnswer !== correctIndex) {
                     option.classList.add('incorrect');
                 }
             });
@@ -374,11 +374,11 @@
         function showResults() {
             const quizContent = document.getElementById('quiz-content');
             const percentage = Math.round((score / quizData.length) * 100);
-            
+
             let emoji = '🎉';
             if (percentage < 50) emoji = '😅';
             else if (percentage < 80) emoji = '👍';
-            
+
             quizContent.innerHTML = `
                 <div class="score-screen">
                     <div class="score-title">${emoji} You scored ${score} out of ${quizData.length}!</div>
@@ -401,7 +401,7 @@
             score = 0;
             selectedAnswer = null;
             isAnswered = false;
-            
+
             const quizContent = document.getElementById('quiz-content');
             quizContent.innerHTML = `
                 <div class="progress-bar">
@@ -412,7 +412,7 @@
                 <div class="options" id="options"></div>
                 <div id="explanation-container"></div>
             `;
-            
+
             displayQuestion();
         }
 
