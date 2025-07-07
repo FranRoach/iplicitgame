@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,6 +79,7 @@
             margin-bottom: 30px;
         }
 
+        /* Color-blind friendly option styles */
         .option {
             padding: 20px;
             border: 2px solid #e5e7eb;
@@ -88,26 +89,60 @@
             font-size: 16px;
             text-align: left;
             background: white;
+            /* Add pattern for extra clarity on selection (for colorblind users) */
+            background-image: none;
         }
 
         .option:hover {
-            background: #FAF4D3; /* light yellow for hover, high contrast */
-            border-color: #FFA500;
+            background: #FFFACD; /* High-contrast light yellow (safe) */
+            border-color: #E69F00; /* Color-blind friendly orange */
             transform: translateY(-2px);
         }
 
+        /* Correct: blue-green (safe) and with icon */
         .option.correct {
-            background: #E3F9E5; /* light green, but not too close to red/green problem */
-            border-color: #218739;
-            color: #218739;
+            background: repeating-linear-gradient(
+                135deg,
+                #56B4E9,
+                #56B4E9 10px,
+                #E6F5FA 10px,
+                #E6F5FA 20px
+            );
+            border-color: #009E73;
+            color: #009E73;
             font-weight: bold;
+            position: relative;
+        }
+        .option.correct::after {
+            content: "✔";
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            font-size: 20px;
+            color: #009E73;
         }
 
+        /* Incorrect: orange stripes and icon */
         .option.incorrect {
-            background: #FFF1E6; /* light orange */
-            border-color: #FF6D00;
-            color: #FF6D00;
+            background: repeating-linear-gradient(
+                135deg,
+                #E69F00,
+                #E69F00 10px,
+                #FFF5E6 10px,
+                #FFF5E6 20px
+            );
+            border-color: #D55E00;
+            color: #D55E00;
             font-weight: bold;
+            position: relative;
+        }
+        .option.incorrect::after {
+            content: "✖";
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            font-size: 20px;
+            color: #D55E00;
         }
 
         .option.disabled {
