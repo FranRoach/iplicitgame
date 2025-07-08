@@ -1,27 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iplicitgame</title>
+    <title>iplicit quiz - know your finance solution</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0057B8 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #f59e0b 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
         }
-
         .quiz-container {
             background: white;
             border-radius: 20px;
@@ -33,7 +25,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .quiz-container::before {
             content: '';
             position: absolute;
@@ -41,9 +32,8 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(90deg, #0057B8 0%, #FFA500 100%);
+            background: linear-gradient(90deg, #1e3a8a 0%, #f59e0b 100%);
         }
-
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -52,20 +42,17 @@
             margin-bottom: 30px;
             overflow: hidden;
         }
-
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #0057B8 0%, #FFA500 100%);
+            background: linear-gradient(90deg, #1e3a8a 0%, #f59e0b 100%);
             transition: width 0.3s ease;
             border-radius: 10px;
         }
-
         .question-counter {
             color: #555;
             font-size: 14px;
             margin-bottom: 20px;
         }
-
         .question {
             font-size: 24px;
             font-weight: 600;
@@ -73,13 +60,11 @@
             margin-bottom: 30px;
             line-height: 1.4;
         }
-
         .options {
             display: grid;
             gap: 15px;
             margin-bottom: 30px;
         }
-
         .option {
             padding: 20px;
             border: 2px solid #e5e7eb;
@@ -90,39 +75,53 @@
             text-align: left;
             background: white;
         }
-
         .option:hover {
-            background: #FAF4D3; /* light yellow for hover, high contrast */
-            border-color: #FFA500;
+            background: #fef3c7;
+            border-color: #f59e0b;
             transform: translateY(-2px);
         }
-
         .option.correct {
-            background: #E3F9E5; /* light green, but not too close to red/green problem */
-            border-color: #218739;
-            color: #218739;
+            background: #dbeafe;
+            border-color: #1e40af;
+            color: #1e40af;
+            font-weight: bold;
+            position: relative;
+        }
+        .option.correct::before {
+            content: '✓';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
             font-weight: bold;
         }
-
         .option.incorrect {
-            background: #FFF1E6; /* light orange */
-            border-color: #FF6D00;
-            color: #FF6D00;
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #dc2626;
+            font-weight: bold;
+            position: relative;
+        }
+        .option.incorrect::before {
+            content: '✗';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
             font-weight: bold;
         }
-
         .option.disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
         .option.disabled:hover {
             transform: none;
         }
-
         .explanation {
-            background: #E6F0FA;
-            border-left: 4px solid #0057B8;
+            background: #f0f9ff;
+            border-left: 4px solid #1e40af;
             padding: 20px;
             margin: 20px 0;
             border-radius: 0 10px 10px 0;
@@ -130,35 +129,29 @@
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
         }
-
         .explanation::before {
             content: '💡 ';
             font-size: 18px;
         }
-
         .score-screen {
             text-align: center;
         }
-
         .score-title {
             font-size: 32px;
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 20px;
         }
-
         .score-subtitle {
             font-size: 18px;
             color: #555;
             margin-bottom: 40px;
         }
-
         .cta-buttons {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .cta-button {
             padding: 15px 30px;
             border: none;
@@ -170,29 +163,24 @@
             text-decoration: none;
             display: inline-block;
         }
-
         .cta-button.primary {
-            background: linear-gradient(135deg, #0057B8 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #f59e0b 100%);
             color: white;
         }
-
         .cta-button.primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 87, 184, 0.2);
+            box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2);
         }
-
         .cta-button.secondary {
             background: white;
-            color: #0057B8;
-            border: 2px solid #0057B8;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
         }
-
         .cta-button.secondary:hover {
-            background: #0057B8;
+            background: #1e3a8a;
             color: white;
             transform: translateY(-2px);
         }
-
         .restart-button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -201,18 +189,16 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            color: #0057B8;
+            color: #1e3a8a;
+            font-weight: 600;
         }
-
         .restart-button:hover {
-            background: #FFA500;
+            background: #f59e0b;
             color: #fff;
         }
-
         @keyframes fadeIn {
             to { opacity: 1; }
         }
-
         @media (max-width: 640px) {
             .quiz-container {
                 padding: 30px 20px;
@@ -238,188 +224,167 @@
             <div id="explanation-container"></div>
         </div>
     </div>
-
     <script>
         // Quiz data
         const quizData = [
             {
-                question: "What makes iplicit different from legacy on-premise finance systems?",
+                question: "What is a key functional advantage of iplicit's deferred revenue automation for UK mid-market finance teams?",
                 options: [
-                    "It's cheaper to install",
-                    "It's only for large enterprises",
-                    "It's cloud-native and designed for growing organisations",
-                    "It doesn't require accounting knowledge",
+                    "It requires manual journal entries each month",
+                    "It automatically calculates revenue spread and automates monthly reversals and journals",
+                    "It only works for simple revenue recognition",
+                    "It requires separate spreadsheet management"
                 ],
-                correctIndex: 2,
-                explanation: "iplicit is a true-cloud finance solution designed for mid-sized organisations that have outgrown entry-level software.",
+                correct: 1,
+                explanation: "iplicit automatically calculates the spread of revenue based on your required time period and then automates the monthly process of reversals and journals to accurately recognise revenue in a compliant manner - eliminating hours of manual work each month."
             },
             {
-                question: "Which of these is a key benefit of iplicit's powerful reporting engine?",
+                question: "Which specific UK compliance feature does iplicit automate?",
                 options: [
-                    "Reports only work in Excel",
-                    "Real-time insights with multi-dimensional analysis",
-                    "Only available at year-end",
-                    "It requires coding knowledge",
+                    "Annual company filings only",
+                    "VAT returns with automatic submission to HMRC",
+                    "Basic bookkeeping entries",
+                    "Manual tax calculations"
                 ],
-                correctIndex: 1,
-                explanation: "iplicit enables live, detailed reporting across departments, dimensions, and entities—without needing tech skills.",
+                correct: 1,
+                explanation: "iplicit automates VAT returns using tax codes, rates and tax systems to generate the figures needed for returns, and can automatically submit your return to HMRC - crucial for UK mid-market finance teams."
             },
             {
-                question: "What makes iplicit ideal for multi-entity organisations?",
+                question: "What labour-saving benefit does iplicit provide for UK mid-market finance teams?",
                 options: [
-                    "Every entity needs a separate login",
-                    "Consolidation across entities is built-in and instant",
-                    "It uses blockchain",
-                    "It only supports UK accounts",
+                    "Reduces work by a few hours per month",
+                    "Can save days of labour every month for medium-sized organizations",
+                    "Only helps with basic data entry",
+                    "Provides minimal time savings"
                 ],
-                correctIndex: 1,
-                explanation: "iplicit simplifies consolidations with automatic intercompany elimination and real-time group-level reporting.",
+                correct: 1,
+                explanation: "iplicit can save days of labour every month for finance teams of medium-sized organizations by automating laborious tasks like group consolidation, intercompany transactions, and multi-currency handling."
             },
             {
-                question: "How does iplicit help reduce reliance on spreadsheets?",
+                question: "What makes iplicit particularly suitable for UK organizations with multiple entities?",
                 options: [
-                    "It converts them into charts",
-                    "Built-in automation removes manual processes",
-                    "It uploads spreadsheets to SharePoint",
-                    "It creates AI-powered Excel macros",
+                    "It requires separate systems for each entity",
+                    "Real-time consolidation with single unified architecture where transactions are entered once",
+                    "It only works for single-entity businesses",
+                    "Manual consolidation processes"
                 ],
-                correctIndex: 1,
-                explanation: "By automating workflows and reporting, iplicit removes the need for spreadsheet workarounds.",
+                correct: 1,
+                explanation: "iplicit's single unified architecture means transactions are only entered once and are automatically consolidated in real-time, perfect for UK mid-market organizations managing multiple entities and currencies."
             },
             {
-                question: "Which feature helps iplicit users adapt to changing regulations or needs?",
+                question: "What heritage gives iplicit particular credibility in the UK accounting software market?",
                 options: [
-                    "Built-in WhatsApp support",
-                    "No-code configuration and flexible approval workflows",
-                    "AI predicts new laws",
-                    "Monthly audits by robots",
+                    "It's a new startup with no track record",
+                    "Brought to you by the team that originally created Exchequer",
+                    "It's based on international software",
+                    "It's a basic cloud migration"
                 ],
-                correctIndex: 1,
-                explanation: "iplicit's adaptable configuration options mean it evolves with your organisation and compliance needs.",
-            },
+                correct: 1,
+                explanation: "iplicit is brought to you by the team that originally created Exchequer, giving it deep UK accounting software heritage and understanding of the specific needs of UK mid-market finance teams."
+            }
         ];
 
         let currentQuestion = 0;
         let score = 0;
-        let selectedAnswer = null;
-        let isAnswered = false;
+        let answered = false;
 
-        function updateProgress() {
-            const progressFill = document.getElementById('progress-fill');
-            const progress = ((currentQuestion + 1) / quizData.length) * 100;
-            progressFill.style.width = progress + '%';
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            showQuestion();
         }
 
-        function displayQuestion() {
-            const questionElement = document.getElementById('question');
-            const optionsElement = document.getElementById('options');
-            const questionCounter = document.getElementById('question-counter');
-            const explanationContainer = document.getElementById('explanation-container');
-
-            questionCounter.textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
-            questionElement.textContent = quizData[currentQuestion].question;
-            optionsElement.innerHTML = '';
-            explanationContainer.innerHTML = '';
-
-            quizData[currentQuestion].options.forEach((option, index) => {
+        function showQuestion() {
+            const questionData = quizData[currentQuestion];
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            
+            document.getElementById('progress-fill').style.width = progressPercent + '%';
+            document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+            document.getElementById('question').textContent = questionData.question;
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            questionData.options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'option';
                 optionElement.textContent = option;
-                optionElement.onclick = () => selectAnswer(index);
-                optionsElement.appendChild(optionElement);
+                optionElement.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(optionElement);
             });
-
-            updateProgress();
-            isAnswered = false;
-            selectedAnswer = null;
+            
+            document.getElementById('explanation-container').innerHTML = '';
+            answered = false;
         }
 
-        function selectAnswer(index) {
-            if (isAnswered) return;
-
-            isAnswered = true;
-            selectedAnswer = index;
+        function selectAnswer(selectedIndex) {
+            if (answered) return;
+            
+            answered = true;
+            const questionData = quizData[currentQuestion];
             const options = document.querySelectorAll('.option');
-            const correctIndex = quizData[currentQuestion].correctIndex;
-
-            options.forEach((option, i) => {
+            
+            options.forEach((option, index) => {
                 option.classList.add('disabled');
-                if (i === correctIndex) {
+                if (index === questionData.correct) {
                     option.classList.add('correct');
-                } else if (i === selectedAnswer && selectedAnswer !== correctIndex) {
+                } else if (index === selectedIndex) {
                     option.classList.add('incorrect');
                 }
             });
-
-            if (selectedAnswer === correctIndex) {
+            
+            if (selectedIndex === questionData.correct) {
                 score++;
             }
-
-            // Show explanation
-            const explanationContainer = document.getElementById('explanation-container');
-            const explanationElement = document.createElement('div');
-            explanationElement.className = 'explanation';
-            explanationElement.textContent = quizData[currentQuestion].explanation;
-            explanationContainer.appendChild(explanationElement);
-
-            // Move to next question after delay
+            
+            showExplanation(questionData.explanation);
+            
             setTimeout(() => {
-                if (currentQuestion < quizData.length - 1) {
-                    currentQuestion++;
-                    displayQuestion();
+                currentQuestion++;
+                if (currentQuestion < quizData.length) {
+                    showQuestion();
                 } else {
                     showResults();
                 }
-            }, 2500);
+            }, 3000);
+        }
+
+        function showExplanation(explanation) {
+            const explanationContainer = document.getElementById('explanation-container');
+            explanationContainer.innerHTML = `<div class="explanation">${explanation}</div>`;
         }
 
         function showResults() {
-            const quizContent = document.getElementById('quiz-content');
             const percentage = Math.round((score / quizData.length) * 100);
-
-            let emoji = '🎉';
-            if (percentage < 50) emoji = '😅';
-            else if (percentage < 80) emoji = '👍';
-
-            quizContent.innerHTML = `
+            let message = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! You really know your stuff!';
+            } else if (percentage >= 60) {
+                message = 'Good job! You have a solid understanding.';
+            } else if (percentage >= 40) {
+                message = 'Not bad! Keep learning and practicing.';
+            } else {
+                message = 'Keep studying! You\'ll get better with practice.';
+            }
+            
+            document.getElementById('quiz-content').innerHTML = `
                 <div class="score-screen">
-                    <div class="score-title">${emoji} You scored ${score} out of ${quizData.length}!</div>
-                    <div class="score-subtitle">That's ${percentage}% correct! Want to learn more about how iplicit can transform your finance function?</div>
+                    <div class="score-title">Quiz Complete!</div>
+                    <div class="score-subtitle">You scored ${score} out of ${quizData.length} (${percentage}%)</div>
+                    <div class="score-subtitle">${message}</div>
                     <div class="cta-buttons">
-                        <a href="https://www.iplicit.com/quick-tour?utm_content=337329471&utm_medium=social&utm_source=linkedin&hss_channel=lcp-10141131" target="_blank" class="cta-button primary">
-                            🚀 Take the Quick Tour
-                        </a>
-                        <a href="mailto:francesca.roach@iplicit.com" class="cta-button secondary">
-                            📧 Email: francesca.roach@iplicit.com
-                        </a>
+                        <a href="https://www.iplicit.com/book-a-demo" class="cta-button primary">Book a Demo</a>
+                        <a href="mailto:francesca.roach@iplicit.com?subject=Quiz%20Inquiry%20-%20iplicit%20Demo%20Request" class="cta-button secondary">Contact Francesca Roach</a>
+                        <button class="cta-button primary" onclick="startQuiz()">Take Quiz Again</button>
                     </div>
-                    <button class="restart-button" onclick="restartQuiz()">🔄 Take Quiz Again</button>
                 </div>
             `;
         }
 
-        function restartQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            selectedAnswer = null;
-            isAnswered = false;
-
-            const quizContent = document.getElementById('quiz-content');
-            quizContent.innerHTML = `
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <div class="question-counter" id="question-counter">Question 1 of 5</div>
-                <div class="question" id="question">Loading...</div>
-                <div class="options" id="options"></div>
-                <div id="explanation-container"></div>
-            `;
-
-            displayQuestion();
-        }
-
-        // Initialize the quiz
-        displayQuestion();
+        // Initialize the quiz when the page loads
+        window.addEventListener('load', startQuiz);
     </script>
 </body>
 </html>
